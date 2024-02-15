@@ -82,7 +82,7 @@ public class Flow<SharedParams>: FlowCancellable {
         return .success(self.params)
     }
     
-    public var semaphore = DispatchSemaphore(value: 1)
+//    public var semaphore = DispatchSemaphore(value: 1)
     public func asyncFlow(with configure: FlowConfigure = .default, execute: @escaping (SharedParams, FlowCancellable) async throws -> Void) async -> Flow {
         await _async(with: configure) { [self] in
             try await execute(params, self)
@@ -150,11 +150,11 @@ public class Flow<SharedParams>: FlowCancellable {
                 }
                 
                 let task = Task {
-                    semaphore.wait()
+//                    semaphore.wait()
                     try await execute()
                 }
                 currentTask = task
-                semaphore.signal()
+//                semaphore.signal()
                 switch await task.result {
                 case .success():
                     break
