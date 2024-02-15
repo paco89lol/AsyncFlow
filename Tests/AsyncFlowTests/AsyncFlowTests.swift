@@ -108,7 +108,7 @@ final class AsyncFlowTests: XCTestCase {
         Task {
             let result = await Flow(BL_GetIPs_Parameters()).asyncFlow(with: .set(timeout: 1, retry: 1)) { params, _ in
                 print("1111")
-                try await Task.sleep(nanoseconds: 1_000_000_000)
+                try await Task.sleep(nanoseconds: 2 * 1_000_000_000)
 //                try! await Task.sleep(nanoseconds: 2 * 1_000_000_000)
 //                try await withCheckedThrowingContinuation { continuation in
 //                    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
